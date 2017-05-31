@@ -1,0 +1,61 @@
+name,catchRate,speed,terrain,pokedex
+Sandshrew,255,40,desert,It can roll its body into a ball. It moves through the desert by rolling at high speeds.
+Cubone,190,35,desert,It always wears the skull of its dead mother
+Spinda,255,60,desert,No two Spinda are said to have identical patterns. It confuses foes with its stumbling motions.
+Cacnea,190,35,desert,It lives in arid locations. Its yellow flowers bloom once a year.
+Trapinch,255,10,desert,It lives in arid deserts. It makes a sloping pit trap in sand where it patiently awaits prey.
+Hippopotas,140,32,desert,It enshrouds itself with sand to protect itself from germs. It does not enjoy getting wet.
+Sandile,180,65,desert,They live buried in the sands of the desert. The sun-warmed sands prevent their body temperature from dropping.
+Fearow,90,100,desert,It's tough and has excellent stamina. It has no problem flying continuously for a whole day carrying a heavy load.
+Maractus,255,60,desert,It uses an up-tempo song and dance to drive away the bird Pokémon that prey on its flower seeds.
+Groudon,20,90,desert,This legendary Pokémon is said to represent the land. It went to sleep after dueling Kyogre.
+Snorunt,190,50,snow,It is said that several Snorunt gather under giant leaves and live together in harmony.
+Vanillite,255,44,snow,This Pokémon formed from icicles bathed in energy from the morning sun. It sleeps buried in snow.
+Jynx,90,95,snow,It wiggles its hips as it walks. It can cause people to dance in unison with it.
+Swinub,225,50,snow,It rubs its snout on the ground to find and dig up food. It sometimes discovers hot springs.
+Delibird,90,75,snow,It carries food rolled up in its tail. It has the habit of sharing food with people lost in mountains.
+Snover,120,40,snow,It lives on snowy mountains. It is boldly inquisitive with little human contact.
+Sneasel,90,115,snow,It feeds on eggs stolen from nests. Its sharply hooked claws rip vulnerable spots on prey.
+Cryogonal,90,105,snow,They are born in snow clouds. They use chains made of ice crystals to capture prey.
+Cubchoo,120,40,snow,Its nose is always running. It sniffs the snot back up because the mucus provides the raw material for its moves.
+Articuno,20,85,snow,Articuno is a legendary bird Pokémon that can control ice. The flapping of its wings chills the air.
+Graveler,120,35,mountain,It makes its home on sheer cliff faces by gouging out numerous horizontal holes.
+Larvitar,90,41,mountain,It is born deep underground. It can't emerge until it has entirely consumed the soil around it.
+Meditite,180,60,mountain,It never skips its daily yoga training. It heightens its inner strength through meditation.
+Zubat,255,55,mountain,It checks its surroundings and location using reflections of the ultrasonic waves from its mouth.
+Machoke,90,45,mountain,It happily carries heavy cargo to toughen up. It willingly does hard work for people.
+Bronzor,255,23,mountain,Ancient people believed that the pattern on Bronzor's back contained a mysterious power.
+Nosepass,255,30,mountain,Its magnetic nose consistently faces north. Travelers check Nosepass to get their bearings.
+Chingling,120,45,mountain,There is an orb inside its mouth which bounces all over and makes a ringing sound every time it hops.
+Beldum,90,30,mountain,It converses with others by using magnetic pulses.
+Heatran,20,77,mountain,Its body is made of rugged steel. It is partially melted in spots because of its own heat.
+Misdreavus,90,85,forest,It likes playing mischievous tricks such as screaming and wailing to startle people at night.
+Murkrow,90,91,forest,It appears near travelers to lure them into deep forests. It is said to carry misfortune.
+Kricketune,90,65,forest,There is a village that hosts a contest based on the amazingly variable cries of this Pokémon.
+Hoothoot,255,50,forest,It begins to hoot at the same time every day. Some trainers use them in place of clocks.
+Pikachu,190,90,forest,It lives in forests with others. It stores electricity in the pouches on its cheeks.
+Butterfree,90,70,forest,It loves the honey of flowers and can locate flower patches that have even tiny amounts of pollen.
+Beedrill,90,75,forest,It can take down any opponent with its powerful poison stingers. It sometimes attacks in swarms.
+Duskull,190,25,forest,It loves the crying of children. It startles bad kids by passing through walls and making them cry.
+Tropius,200,51,Children of the southern tropics eat as snacks the fruit that grows in bunches around the neck of Tropius. This Pokémon flies by flapping the leaves on its back as if they were wings.
+Cresselia,20,85,forest,Shiny particles are released from its wings like a veil. It is said to represent the crescent moon.
+Petilil,190,30,meadow,The leaves on its head are very bitter. Eating one of these leaves is known to refresh a tired body.
+Clefairy,150,35,meadow,Its magical and cute appeal has many admirers. It is rare and found only in certain areas.
+Roselia,150,65,meadow,It shoots sharp thorns as projectiles at any opponent that tries to steal the flowers on its arms. The aroma of this Pokémon brings serenity to living things.
+Jigglypuff,170,20,meadow,It hugely inflates its stomach and sings a mysterious melody that lulls people to sleep.
+Rattata,255,72,meadow,It searches for food all day. It gnaws on hard objects to wear down its fangs.
+Riolu,90,60,meadow,The aura that emanates from its body intensifies to alert others if it is afraid or sad.
+Marill,190,40,meadow,The oil-filled end of its tail floats on water. It keeps Marill from drowning even in a strong current.
+Girafarig,90,85,meadow,The head on its tail contains a small brain. It can instinctively fight even while facing backward.
+Shinx,235,45,meadow,The extension and contraction of its muscles generates electricity. It glows when in trouble.
+Shaymin,20,100,meadow,It can dissolve toxins in the air to instantly transform ruined land into a lush field of flowers.
+Tentacruel,90,100,ocean,It has large red orbs on its head. The orbs glow before lashing the vicinity with a harsh ultrasonic blast. This Pokémon's outburst creates rough waves around it.
+Wailmer,125,60,ocean,It eats one ton of food every day. It plays by shooting stored seawater out its blowholes with great force.
+Mantine,90,70,ocean,It doesn't care if Remoraid attach to it for scavenging its leftovers as it majestically swims.
+Luvdisc,225,97,ocean,It lives in warm seas. It is said that a couple finding this Pokémon will be blessed with eternal love.
+Psyduck,190,55,ocean,It is constantly wracked by a headache. It sometimes uses mysterious powers.
+Horsea,225,60,ocean,It makes its nest in the shade of corals. It is known for shooting down flying bugs with precision blasts of ink from the surface of the water.
+Staryu,225,85,ocean,Large numbers of these Pokémon make their home at the seaside. A strange red glow radiates from the center of their bodies.
+Pelipper,90,65,ocean,It is a flying transporter that carries small Pokémon in its beak. It bobs on the waves to rest its wings.
+Buizel,190,85,ocean,It inflates the flotation sac around its neck and pokes its head out of the water to see what is going on.
+Kyogre,20,90,ocean,It is said to have widened the seas by causing downpours. It had been asleep in a marine trench.
