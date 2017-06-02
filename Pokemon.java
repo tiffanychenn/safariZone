@@ -6,6 +6,7 @@ public class Pokemon{
     private final String[][] data;
     private int catchRate;
     private int runRate;
+    private int speed;
     private String name;
     private String pokedex;
     //private PImage sprite;
@@ -32,7 +33,8 @@ public class Pokemon{
 	    if(data[i][0].equals(name)){ //if name is found fill in appropriate data
 		this.name = name;
 		catchRate = Integer.parseInt(data[i][1]);
-		runRate = Integer.parseInt(data[i][1]); //CHANGE LATER (run rate is not always the speed)
+		runRate = Integer.parseInt(data[i][2]);
+		speed = Integer.parseInt(data[i][2]);
 		pokedex = data[i][4];
 		//sprite = 
 		caught = false;
@@ -55,20 +57,28 @@ public class Pokemon{
 	    s += '\n';
 	}
 	*/
-	s = s + "Name: " + name + "\n" + "Catch Rate: " + catchRate + "\n" + "Pokedex Entry: " + pokedex + "\n";
+	s = s + "Name: " + name + "\n" + "Catch Rate: " + catchRate + "\n" + "Escape Rate: " + runRate + "\n" + "Speed: " + speed + "\n" + "Pokedex Entry: " + pokedex + "\n";
 	return s;
     }
 
-    public void changeRates(String input){
-	//Modifies catch rate and run rate based on whether player throws bait or mud
+    public void changeRates(String input){ //Modifies catch rate and run rate based on whether player throws bait or mud
+	if(input.equals("bait")){
+	    
+	}
+	else if(input.equals("mud")){
+	    
+	}
+	else{
+	    throw new IllegalArgumentException("input 'bait' or 'mud'");
+	}
     }
 
-    public void changeRates(int c, int r){
-	//Int version
+    public void changeRates(int c, int r){ //Int version
+    
     }
 
-    public void catchPokemon(){
-	//Occurs when player throws ball, decides whether pokemon is caught or not. If pokemon is caught, caught is changed to true
+    public void catchPokemon(){ //Occurs when player throws ball, decides whether pokemon is caught or not. If pokemon is caught, caught is changed to true
+    
     }
 
     public void display(){
