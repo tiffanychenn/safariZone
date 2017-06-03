@@ -2,6 +2,7 @@ public class Avatar{
   
   private String name;
   private ArrayList<PImage> sprites;
+  private int pic, x, y;
   //private ArrayList<Pokemon> caught;
 
   public Avatar(String name){
@@ -10,6 +11,9 @@ public class Avatar{
 
   public Avatar(String name, boolean gender){
     this.name = name;
+    pic = 0;
+    x = 0;
+    y = 0;
     PImage original;
     if (gender){
       original = loadImage("avatars/male.png");
@@ -25,9 +29,19 @@ public class Avatar{
   }
   
   void display(){
-     for (int i = 0; i < sprites.size(); i ++){
-       image(sprites.get(i), 64 * (i / 4), 64 * (i % 4));
-     }
+     image(sprites.get(pic), x, y);
+  }
+  
+  void setX(int i){
+    x = i;
+  }
+  
+  void setY(int i){
+    y = i;
+  }
+  
+  void setPic(int i){
+    pic = i;
   }
   
   /*void addPoke(Pokemon p){

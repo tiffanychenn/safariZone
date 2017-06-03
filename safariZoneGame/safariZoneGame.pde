@@ -1,14 +1,11 @@
-Avatar a;
+Simulation s;
 
 void setup(){
   size(256,256);
-  a = new Avatar("Dawn");
-  PImage j = loadImage("terrains/meadow.png");
-  for (int i = 0; i < 16; i ++){
-    image(j, 64 * (i / 4), 64 * (i % 4));
-  }
+  s = new Simulation();
 }
 
 void draw(){
-  a.display();
+  s.update();
+  s.display();
 }
