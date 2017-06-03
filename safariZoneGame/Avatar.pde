@@ -28,8 +28,9 @@ public class Avatar{
     //caught = new ArrayList<Pokemon>();
   }
   
-  void display(){
-     image(sprites.get(pic), x, y);
+  void display(boolean b){
+    if (b) image(sprites.get(pic).get(0, 0, 64, 43), x, y);
+    else image(sprites.get(pic), x, y);
   }
   
   void setX(int i){

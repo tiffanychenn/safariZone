@@ -20,6 +20,7 @@ public class Simulation{
     for (int i = 0; i < 16; i ++){
       image(terrains.get(terrain), 64 * (i / 4), 64 * (i % 4));
     }
+    if (keyPressed) keyPressed();
   }
   
   void keyPressed(){
@@ -40,7 +41,8 @@ public class Simulation{
   }
   
   void display(){
-    a.display();
+    if (terrain == 0) a.display(true);
+    else a.display(false);
   }
   
 }
