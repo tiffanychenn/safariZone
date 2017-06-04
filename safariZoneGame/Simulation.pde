@@ -8,7 +8,7 @@ public class Simulation {
   boolean moving, welp;
 
   public Simulation() {
-    a = new Avatar("Dawn", false);
+    a = new Avatar("Dawn", true);
     terrains = new ArrayList<PImage>();
     terrains.add(loadImage("terrains/ocean.png"));
     terrains.add(loadImage("terrains/desert.png"));
@@ -32,7 +32,7 @@ public class Simulation {
   }
 
   void move() {
-    if (millis() - seconds > 100 || welp) {
+    if (millis() - seconds > 150 || welp) {
       if (direction == 1) a.setX(a.getX() - 32);
       else if (direction == 0) a.setY(a.getY() + 32);
       else if (direction == 2) a.setX(a.getX() + 32);
@@ -40,12 +40,8 @@ public class Simulation {
       a.setDirection(direction);
       a.setPic(direction, (a.getPicNumber(direction) + 1) % 4);
       welp = false;
-      for (int i = 0; i < 4; i ++){
-        println(a.getPicNumber(i));
-      }
-      println();
     }
-    if (millis() - seconds > 100) moving = false;
+    if (millis() - seconds > 150) moving = false;
   }
 
   void keyPressed() {
