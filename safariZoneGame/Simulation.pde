@@ -8,7 +8,7 @@ public class Simulation {
   boolean moving, welp;
 
   public Simulation() {
-    a = new Avatar("Dawn", true);
+    a = new Avatar("Dawn", false);
     terrains = new ArrayList<PImage>();
     terrains.add(loadImage("terrains/ocean.png"));
     terrains.add(loadImage("terrains/desert.png"));
