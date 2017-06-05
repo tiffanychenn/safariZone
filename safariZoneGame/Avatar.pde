@@ -4,7 +4,7 @@ public class Avatar{
   private ArrayList<PImage> sprites;
   private int x, y, direction;
   private int[] pics = {0, 0, 0, 0};
-  //private ArrayList<Pokemon> caught;
+  private ArrayList<Pokemon> caught;
 
   public Avatar(String name){
     this(name, true);
@@ -62,8 +62,8 @@ public class Avatar{
     direction = i;
   }
   
-  /*void addPoke(Pokemon p){
+  void addPoke(Pokemon p){
     caught.add(p);
-  }*/
+  }
 
 }
