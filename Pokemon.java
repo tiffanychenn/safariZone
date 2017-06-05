@@ -12,6 +12,7 @@ public class Pokemon{
     private int speed;
     private String name;
     private String pokedex;
+    private String terrain;
     //private PImage sprite;
     private boolean caught;
 
@@ -41,6 +42,7 @@ public class Pokemon{
 		runStage = 0;
 		catchRate = catchDefault;
 		runRate = speed;
+		terrain = data[i][3];
 		pokedex = data[i][4];
 		//sprite = 
 		caught = false;
@@ -63,7 +65,7 @@ public class Pokemon{
 	  s += '\n';
 	  }
 	*/
-	s = s + "Name: " + name + "\n" + "Default Catch Rate: " + catchDefault + "\n" + "Catch Stage: " + catchStage + "\n" + "Speed: " + speed + "\n" + "Run Stage: " + runStage + "\n" + "Catch Rate: " + catchRate + "\n" + "Escape Rate: " + runRate + "\n" + "Pokedex Entry: " + pokedex + "\n";
+	s = s + "Name: " + name + "\n" + "Default Catch Rate: " + catchDefault + "\n" + "Catch Stage: " + catchStage + "\n" + "Speed: " + speed + "\n" + "Run Stage: " + runStage + "\n" + "Catch Rate: " + catchRate + "\n" + "Escape Rate: " + runRate + "\n"  + "Terrain: " + terrain + "\n" + "Pokedex Entry: " + pokedex + "\n";
 	return s;
     }
 
