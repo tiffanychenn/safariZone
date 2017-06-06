@@ -70,7 +70,11 @@ public class Avatar{
   }
   
   void addPoke(Pokemon p){
-    caught.add(p);
+    boolean there = false;
+    for (int i = 0; i < caught.size(); i ++){
+      if (p.getName().equals(caught.get(i).getName())) there = true;
+    }
+    if (!there) caught.add(p);
   }
   
   public String toString(){

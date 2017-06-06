@@ -146,6 +146,10 @@ public class Pokemon {
     return caught;
   }
 
+  public String getName(){
+    return name;
+  }
+
   public void display() {
     image(sprite, 272, 0);
   }
