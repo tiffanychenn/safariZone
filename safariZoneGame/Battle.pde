@@ -3,7 +3,7 @@ import java.util.*;
 public class Battle {
 
   private Pokemon p;
-  //private PImage background;
+  private PImage background;
 
   public Battle(String name, int t) {
     p = new Pokemon(name);
@@ -22,10 +22,18 @@ public class Battle {
     temp.add(backs.get(7));
     temp.add(backs.get(9));
     temp.add(backs.get(10));
+    if (t == 0) background = temp.get(3);
+    if (t == 1) background = temp.get(5);
+    if (t == 2) background = temp.get(1);
+    if (t == 3) background = temp.get(4);
+    if (t == 4) background = temp.get(0);
+    if (t == 5) background = temp.get(2);
     //loads pokemon and avatar images
   }
 
   public void display() {
+    image(background, 0, 0);
+    p.display();
   }
 
   public void keyPressed() { //WASD, enter

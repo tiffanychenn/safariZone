@@ -122,15 +122,26 @@ public class Pokemon {
     }
   }
 
-  public String[] getPokes() {
-    String[] yes = new String[60];
-    for (int i = 0; i < data.length; i ++) {
-      yes[i] = data[i][0];
-    }
+  public String[][] getPokes() {
+    String[][] yes = new String[6][10];
+    yes[0] = splitter(50);
+    yes[1] = splitter(0);
+    yes[2] = splitter(40);
+    yes[3] = splitter(30);
+    yes[4] = splitter(10);
+    yes[5] = splitter(20);
     return yes;
+  }
+  
+  private String[] splitter(int number){
+    String[] temp = new String[10];
+    for (int i = 0; i < 10; i ++){
+      temp[i] = data[i + number][0];
+    }
+    return temp;
   }
 
   public void display() {
-    image(sprite, 0, 0);
+    image(sprite, 272, 0);
   }
 }
