@@ -74,20 +74,32 @@ public class Battle {
       exit = true;
     }
     else println("Pokemon was not caught!");
+    pokemonRun();
   }
 
   public void bait() { //throws bait
     println("Bait was thrown!");
     p.changeRates("bait");
+    pokemonRun();
   }
 
   public void mud() { //throws mud
     println("Mud was thrown!");
     p.changeRates("mud");
+    pokemonRun();
   }
 
   public void run() {
     exit = true;
+  }
+  
+  public void pokemonRun(){
+    int n = (int)(Math.random() * 255);
+    if(n < p.getRunRate()){
+      exit = true;
+      println("Pokemon ran!");
+    }
+    else println("Pokemon did not run!");
   }
   
   public boolean getExit(){

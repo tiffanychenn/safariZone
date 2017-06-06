@@ -150,7 +150,11 @@ public class Pokemon {
     return name;
   }
 
+  public double getRunRate(){
+    return runRate;
+  }
+
   public void display() {
-    image(sprite, 272, 0);
+    image(sprite, 322, 20);
   }
 }

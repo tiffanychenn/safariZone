@@ -23,6 +23,8 @@ Roadmap of Development Stages
 - Should be done by June 6
 - Avatar pictures found on June 2
 - Terrain pictures (out of battle) found on June 3
+- Terrain pictures (in battle) found on June 5
+- Pokemon pictures found on June 6
 5: Working on implementing game in Processing with different pictures. Person should be able to move with the arrow keys. During battle, person can decide bait, mud, or ball by pressing the arrow keys and enter on the keyboard.
 - Should be done by June 9
 - Finished moving avatar on June 4
