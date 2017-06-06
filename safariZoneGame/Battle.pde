@@ -94,4 +94,8 @@ public class Battle {
     return exit;
   }
   
+  public Pokemon getPoke(){
+    return p;
+  }
+  
 }

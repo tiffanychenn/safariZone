@@ -65,7 +65,7 @@ public class Pokemon {
      s += '\n';
      }
      */
-    s = s + "Name: " + name + "\n" + "Default Catch Rate: " + catchDefault + "\n" + "Catch Stage: " + catchStage + "\n" + "Speed: " + speed + "\n" + "Run Stage: " + runStage + "\n" + "Catch Rate: " + catchRate + "\n" + "Escape Rate: " + runRate + "\n" + "Pokedex Entry: " + pokedex + "\n";
+    s = s + "Name: " + name;// + "\n" + "Default Catch Rate: " + catchDefault + "\n" + "Catch Stage: " + catchStage + "\n" + "Speed: " + speed + "\n" + "Run Stage: " + runStage + "\n" + "Catch Rate: " + catchRate + "\n" + "Escape Rate: " + runRate + "\n" + "Pokedex Entry: " + pokedex + "\n";
     return s;
   }
 
@@ -115,8 +115,8 @@ public class Pokemon {
   }
 
   public boolean catchPokemon() { //Occurs when player throws ball, decides whether pokemon is caught or not. If pokemon is caught, caught is changed to true
-    //Generate a random int between 0 and 255 inclusive. If it is less than catchRate, the Pokemon is caught.
-    double n = Math.random() * 256;
+    //Generate a random int between 0 and 511 inclusive. If it is less than catchRate, the Pokemon is caught.
+    double n = Math.random() * 512;
     if (n < catchRate) {
       caught = true;
     }
@@ -140,6 +140,10 @@ public class Pokemon {
       temp[i] = data[i + number][0];
     }
     return temp;
+  }
+  
+  public boolean getCaught(){
+    return caught;
   }
 
   public void display() {

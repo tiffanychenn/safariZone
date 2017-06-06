@@ -35,6 +35,7 @@ public class Simulation {
       if (b.getExit()){
         battle = false;
       }
+      if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
     }
     else {
       if (keyPressed) keyPressed();
@@ -42,6 +43,7 @@ public class Simulation {
       for (int i = 0; i < 64; i ++) {
         image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
       }
+      println(a);
     }
   }
 

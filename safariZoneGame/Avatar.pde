@@ -29,7 +29,7 @@ public class Avatar{
     for (int i = 0; i < 16; i ++){
       sprites.add(original.get(64 * (i % 4), 64 * (i / 4), 64, 64)); 
     }
-    //caught = new ArrayList<Pokemon>();
+    caught = new ArrayList<Pokemon>();
   }
   
   void display(boolean b){
@@ -71,6 +71,10 @@ public class Avatar{
   
   void addPoke(Pokemon p){
     caught.add(p);
+  }
+  
+  public String toString(){
+    return caught.toString();
   }
 
 }
