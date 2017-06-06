@@ -29,7 +29,7 @@ public class Simulation {
   }
 
   void update() {
-    if (battle) battle();
+    //if (battle) //battle();
     if (keyPressed) keyPressed();
     if (moving) move();
     for (int i = 0; i < 64; i ++) {
@@ -72,7 +72,7 @@ public class Simulation {
           seconds = millis();
         }
       } else if (key == 'S' || key == 's') {
-        if (a.getY() <= 384) {
+        if (a.getY() <= 128) {
           moving = true;
           welp = true;
           direction = 0;
