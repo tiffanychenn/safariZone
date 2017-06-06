@@ -23,9 +23,10 @@ Roadmap of Development Stages
 - Should be done by June 6
 - Avatar pictures found on June 2
 - Terrain pictures (out of battle) found on June 3
-5: Working on implementing game in Processing with different pictures. Person should be able to move with the keyboard (a,s,d,w). During battle, person can decide bait, mud, or ball by pressing keys on keyboard (b for ball, t for bait, m for mud)
+5: Working on implementing game in Processing with different pictures. Person should be able to move with the arrow keys. During battle, person can decide bait, mud, or ball by pressing the arrow keys and enter on the keyboard.
 - Should be done by June 9
 - Finished moving avatar on June 4
+- Finished basic battle functions on June 5
 6: Implementing a Pokedex that updates as more Pokemon are caught
 - Will do this if we have time
 7: Changing a person’s avatar, possibly with a settings tool.
