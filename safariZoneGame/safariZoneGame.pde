@@ -1,7 +1,8 @@
 Simulation s;
+Pokemon p;
 
 void setup(){
-  size(256,256);
+  size(512,512);
   s = new Simulation();
 }
 

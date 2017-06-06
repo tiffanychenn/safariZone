@@ -5,7 +5,9 @@ public class Simulation {
   Avatar a;
   int terrain, seconds, direction;
   ArrayList<PImage> terrains;
-  boolean moving, welp;
+  boolean moving, welp, battle;
+  Battle b;
+  String[] pokes;
 
   public Simulation() {
     a = new Avatar("Dawn", false);
@@ -21,13 +23,17 @@ public class Simulation {
     welp = false;
     seconds = millis();
     direction = 0;
+    battle = false;
+    Pokemon p = new Pokemon("Lapras");
+    pokes = p.getPokes();
   }
 
   void update() {
+    if (battle) battle();
     if (keyPressed) keyPressed();
     if (moving) move();
-    for (int i = 0; i < 16; i ++) {
-      image(terrains.get(terrain), 64 * (i / 4), 64 * (i % 4));
+    for (int i = 0; i < 64; i ++) {
+      image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
     }
   }
 
@@ -41,7 +47,13 @@ public class Simulation {
       a.setPic(direction, (a.getPicNumber(direction) + 1) % 4);
       welp = false;
     }
-    if (millis() - seconds > 150) moving = false;
+    if (millis() - seconds > 150){
+      moving = false;
+      if ((int)(Math.random() * 10) < 1){
+        battle = true;
+        System.out.println("battle!");
+      }
+    }
   }
 
   void keyPressed() {
@@ -60,14 +72,14 @@ public class Simulation {
           seconds = millis();
         }
       } else if (key == 'S' || key == 's') {
-        if (a.getY() <= 128) {
+        if (a.getY() <= 384) {
           moving = true;
           welp = true;
           direction = 0;
           seconds = millis();
         }
       } else if (key == 'D' || key == 'd') {
-        if (a.getX() <= 128) {
+        if (a.getX() <= 384) {
           moving = true;
           welp = true;
           direction = 2;
