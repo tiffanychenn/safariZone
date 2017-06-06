@@ -114,5 +114,8 @@ public class Simulation {
       if (terrain == 0) a.display(true);
       else a.display(false);
     }
+    else {
+      a.displayBack();
+    }
   }
 }
