@@ -142,7 +142,7 @@ public class Pokemon {
     return temp;
   }
   
-  public boolean getCaught(){
+  public boolean getCaught(){ 
     return caught;
   }
 
