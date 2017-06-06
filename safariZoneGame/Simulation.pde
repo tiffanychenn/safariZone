@@ -10,7 +10,7 @@ public class Simulation {
   String[][] pokes;
 
   public Simulation() {
-    a = new Avatar("Dawn", false);
+    a = new Avatar("Dawn", true);
     terrains = new ArrayList<PImage>();
     terrains.add(loadImage("terrains/ocean.png"));
     terrains.add(loadImage("terrains/desert.png"));
@@ -29,7 +29,13 @@ public class Simulation {
   }
 
   void update() {
-    if (battle) b.display();
+    if (battle){
+      b.display();
+      if (keyPressed) b.keyPressed();
+      if (b.getExit()){
+        battle = false;
+      }
+    }
     else {
       if (keyPressed) keyPressed();
       if (moving) move();
@@ -77,28 +83,28 @@ public class Simulation {
     else if (key == '5') terrain = 4;
     else if (key == '6') terrain = 5;
     if (moving == false) {
-      if (key == 'A' || key == 'a') {
+      if (keyCode == LEFT) {
         if (a.getX() >= 64) {
           moving = true;
           welp = true;
           direction = 1;
           seconds = millis();
         }
-      } else if (key == 'S' || key == 's') {
+      } else if (keyCode == DOWN) {
         if (a.getY() <= 128) {
           moving = true;
           welp = true;
           direction = 0;
           seconds = millis();
         }
-      } else if (key == 'D' || key == 'd') {
+      } else if (keyCode == RIGHT) {
         if (a.getX() <= 384) {
           moving = true;
           welp = true;
           direction = 2;
           seconds = millis();
         }
-      } else if (key == 'W' || key == 'w') {
+      } else if (keyCode == UP) {
         if (a.getY() >= 64) {
           moving = true;
           welp = true;

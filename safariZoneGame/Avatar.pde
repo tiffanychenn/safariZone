@@ -19,11 +19,11 @@ public class Avatar{
     PImage original;
     if (gender){
       original = loadImage("avatars/male.png");
-      back = loadImage("avatars/brendanback.png");
+      back = loadImage("avatars/brendanback1.png");
     }
     else {
       original = loadImage("avatars/female.png");
-      back = loadImage("avatars/rosaback.png");
+      back = loadImage("avatars/rosaback1.png");
     }
     sprites = new ArrayList<PImage>();
     for (int i = 0; i < 16; i ++){
@@ -38,7 +38,7 @@ public class Avatar{
   }
   
   void displayBack(){
-    image(back, 0, 128);
+    image(back, 0, 88);
   }
   
   int getX(){

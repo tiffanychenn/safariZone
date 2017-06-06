@@ -114,12 +114,13 @@ public class Pokemon {
     }
   }
 
-  public void catchPokemon() { //Occurs when player throws ball, decides whether pokemon is caught or not. If pokemon is caught, caught is changed to true
+  public boolean catchPokemon() { //Occurs when player throws ball, decides whether pokemon is caught or not. If pokemon is caught, caught is changed to true
     //Generate a random int between 0 and 255 inclusive. If it is less than catchRate, the Pokemon is caught.
     double n = Math.random() * 256;
     if (n < catchRate) {
       caught = true;
     }
+    return caught;
   }
 
   public String[][] getPokes() {

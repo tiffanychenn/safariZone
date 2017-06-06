@@ -4,14 +4,16 @@ public class Battle {
 
   private Pokemon p;
   private PImage background;
+  private int input, seconds;
+  private boolean exit;
 
   public Battle(String name, int t) {
     p = new Pokemon(name);
     //chooses background based on terrain
     PImage backgrounds = loadImage("battle/backgrounds.png");
     ArrayList<PImage> backs = new ArrayList<PImage>();
-    for (int i = 0; i < 4; i ++){
-      for (int j = 0; j < 3; j ++){
+    for (int i = 0; i < 4; i ++) {
+      for (int j = 0; j < 3; j ++) {
         backs.add(backgrounds.get(j * 512, 290 * i + 34, 512, 256));
       }
     }
@@ -29,6 +31,9 @@ public class Battle {
     if (t == 4) background = temp.get(0);
     if (t == 5) background = temp.get(2);
     //loads pokemon and avatar images
+    input = 0; // 0 is bait, 1 is mud, 2 is ball, 3 is run
+    exit = false;
+    seconds = millis();
   }
 
   public void display() {
@@ -37,20 +42,56 @@ public class Battle {
   }
 
   public void keyPressed() { //WASD, enter
+    if (keyCode == LEFT) {
+      if (input == 1 || input == 3){
+        input -= 1;
+      }
+    } else if (keyCode == DOWN) {
+      if (input == 0 || input == 1) {
+        input += 2;
+      }
+    } else if (keyCode == RIGHT) {
+      if (input == 0 || input == 2) {
+        input += 1;
+      }
+    } else if (keyCode == UP) {
+      if (input == 2 || input == 3) {
+        input -= 2;
+      }
+    } else if ((key == 13 || key == 10) && millis() - seconds > 250) {
+      seconds = millis();
+      if (input == 0) bait();
+      if (input == 1) mud();
+      if (input == 2) throwBall();
+      if (input == 3) run();
+    }
+    println(input);
   }
 
   public void throwBall() { //throws ball
-    p.catchPokemon();
+    if (p.catchPokemon()){
+      println("Pokemon was caught!");
+      exit = true;
+    }
+    else println("Pokemon was not caught!");
   }
 
   public void bait() { //throws bait
+    println("Bait was thrown!");
     p.changeRates("bait");
   }
 
   public void mud() { //throws mud
+    println("Mud was thrown!");
     p.changeRates("mud");
   }
 
-  public void run() { //runs from battle. always 100%
+  public void run() {
+    exit = true;
   }
+  
+  public boolean getExit(){
+    return exit;
+  }
+  
 }
