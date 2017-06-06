@@ -5,7 +5,7 @@ public class Simulation {
   Avatar a;
   int terrain, seconds, direction;
   ArrayList<PImage> terrains;
-  boolean moving, welp, battle;
+  boolean moving, start, battle;
   Battle b;
   String[][] pokes;
 
@@ -20,7 +20,7 @@ public class Simulation {
     terrains.add(loadImage("terrains/cave.png"));
     terrain = 0;
     moving = false;
-    welp = false;
+    start = false;
     seconds = millis();
     direction = 0;
     battle = false;
@@ -48,14 +48,14 @@ public class Simulation {
   }
 
   void move() {
-    if (millis() - seconds > 150 || welp) {
+    if (millis() - seconds > 150 || start) {
       if (direction == 1) a.setX(a.getX() - 32);
       else if (direction == 0) a.setY(a.getY() + 32);
       else if (direction == 2) a.setX(a.getX() + 32);
       else a.setY(a.getY() - 32);
       a.setDirection(direction);
       a.setPic(direction, (a.getPicNumber(direction) + 1) % 4);
-      welp = false;
+      start = false;
     }
     if (millis() - seconds > 150) {
       moving = false;
@@ -88,28 +88,28 @@ public class Simulation {
       if (keyCode == LEFT) {
         if (a.getX() >= 64) {
           moving = true;
-          welp = true;
+          start = true;
           direction = 1;
           seconds = millis();
         }
       } else if (keyCode == DOWN) {
-        if (a.getY() <= 128) {
+        if (a.getY() <= 256) {
           moving = true;
-          welp = true;
+          start = true;
           direction = 0;
           seconds = millis();
         }
       } else if (keyCode == RIGHT) {
         if (a.getX() <= 384) {
           moving = true;
-          welp = true;
+          start = true;
           direction = 2;
           seconds = millis();
         }
       } else if (keyCode == UP) {
         if (a.getY() >= 64) {
           moving = true;
-          welp = true;
+          start = true;
           direction = 3;
           seconds = millis();
         }

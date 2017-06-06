@@ -1,7 +1,7 @@
 Simulation s;
 
 void setup(){
-  size(512,256);
+  size(512,384);
   s = new Simulation();
 }
 

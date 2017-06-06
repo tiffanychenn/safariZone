@@ -4,8 +4,9 @@ public class Battle {
 
   private Pokemon p;
   private PImage background;
-  private int input, seconds;
+  private int input, seconds, currentText;
   private boolean exit;
+  private final ArrayList<PImage> text;
 
   public Battle(String name, int t) {
     p = new Pokemon(name);
@@ -34,10 +35,23 @@ public class Battle {
     input = 0; // 0 is bait, 1 is mud, 2 is ball, 3 is run
     exit = false;
     seconds = millis();
+    text = new ArrayList<PImage>();
+    text.add(loadImage("text/textBoxBait.png"));
+    text.add(loadImage("text/textBoxMud.png"));
+    text.add(loadImage("text/textBoxBall.png"));
+    text.add(loadImage("text/textBoxRun.png"));
+    text.add(loadImage("text/throwBait.png"));
+    text.add(loadImage("text/throwMud.png"));
+    text.add(loadImage("text/throwBall.png"));
+    text.add(loadImage("text/runAvatar.png"));
+    text.add(loadImage("text/runPokemon.png"));
+    text.add(loadImage("text/stay.png"));
+    currentText = 0;
   }
 
   public void display() {
     image(background, 0, 0);
+    image(text.get(currentText), 0, 256);
     p.display();
   }
 
@@ -45,18 +59,22 @@ public class Battle {
     if (keyCode == LEFT) {
       if (input == 1 || input == 3){
         input -= 1;
+        currentText -= 1;
       }
     } else if (keyCode == DOWN) {
       if (input == 0 || input == 1) {
         input += 2;
+        currentText += 2;
       }
     } else if (keyCode == RIGHT) {
       if (input == 0 || input == 2) {
         input += 1;
+        currentText += 1;
       }
     } else if (keyCode == UP) {
       if (input == 2 || input == 3) {
         input -= 2;
+        currentText -= 2;
       }
     } else if ((key == 13 || key == 10) && millis() - seconds > 250) {
       seconds = millis();
