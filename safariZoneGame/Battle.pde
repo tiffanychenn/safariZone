@@ -45,6 +45,8 @@ public class Battle {
     text.add(loadImage("text/throwBall.png"));
     text.add(loadImage("text/runAvatar.png"));
     text.add(loadImage("text/runPokemon.png"));
+    text.add(loadImage("text/caughtYes.png"));
+    text.add(loadImage("text/caughtNo.png"));
     text.add(loadImage("text/stay.png"));
     currentText = 0;
   }
