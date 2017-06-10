@@ -155,6 +155,6 @@ public class Pokemon {
   }
 
   public void display() {
-    image(sprite, 322, 20);
+    image(sprite, 322, 35);
   }
 }

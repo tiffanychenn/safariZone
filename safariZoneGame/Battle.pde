@@ -5,7 +5,7 @@ public class Battle {
   private Pokemon p;
   private PImage background;
   private int input, seconds, currentText;
-  private boolean exit;
+  private boolean exit, pause;
   private final ArrayList<PImage> text;
 
   public Battle(String name, int t) {
@@ -34,6 +34,7 @@ public class Battle {
     //loads pokemon and avatar images
     input = 0; // 0 is bait, 1 is mud, 2 is ball, 3 is run
     exit = false;
+    pause = false;
     seconds = millis();
     text = new ArrayList<PImage>();
     text.add(loadImage("text/textBoxBait.png"));
@@ -55,6 +56,22 @@ public class Battle {
     image(background, 0, 0);
     image(text.get(currentText), 0, 256);
     p.display();
+    if (pause && millis() - seconds > 1000){
+      seconds = millis();
+      pause = false;
+      if (currentText == 4 || currentText == 5 || currentText == 10){
+        pokemonRun();
+        pause = true;
+      }
+      else if (currentText == 6){
+        pause = true;
+        catchPokemon();
+      }
+      else {
+        currentText = 0;
+        input = 0;
+      }
+    }
   }
 
   public void keyPressed() { //WASD, enter
@@ -78,38 +95,42 @@ public class Battle {
         input -= 2;
         currentText -= 2;
       }
-    } else if ((key == 13 || key == 10) && millis() - seconds > 250) {
+    } else if (key == 13 || key == 10) {
       seconds = millis();
       if (input == 0) bait();
       if (input == 1) mud();
       if (input == 2) throwBall();
       if (input == 3) run();
+      pause = true;
     }
-    println(input);
   }
 
   public void throwBall() { //throws ball
+    currentText = 6;
+  }
+
+  public void catchPokemon(){
     if (p.catchPokemon()){
-      println("Pokemon was caught!");
+      currentText = 9;
       exit = true;
     }
-    else println("Pokemon was not caught!");
-    pokemonRun();
+    else{
+      currentText = 10;
+    }
   }
 
   public void bait() { //throws bait
-    println("Bait was thrown!");
     p.changeRates("bait");
-    pokemonRun();
+    currentText = 4;
   }
 
   public void mud() { //throws mud
-    println("Mud was thrown!");
     p.changeRates("mud");
-    pokemonRun();
+    currentText = 5;
   }
 
   public void run() {
+    currentText = 7;
     exit = true;
   }
   
@@ -117,9 +138,11 @@ public class Battle {
     int n = (int)(Math.random() * 255);
     if(n < p.getRunRate()){
       exit = true;
-      println("Pokemon ran!");
+      currentText = 8;
     }
-    else println("Pokemon did not run!");
+    else {
+      currentText = 11;
+    }
   }
   
   public boolean getExit(){
@@ -128,6 +151,10 @@ public class Battle {
   
   public Pokemon getPoke(){
     return p;
+  }
+  
+  public boolean getPause(){
+    return pause;
   }
   
 }

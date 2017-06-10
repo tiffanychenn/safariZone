@@ -10,7 +10,7 @@ public class Simulation {
   String[][] pokes;
 
   public Simulation() {
-    a = new Avatar("Dawn", true);
+    a = new Avatar("Dawn", false);
     terrains = new ArrayList<PImage>();
     terrains.add(loadImage("terrains/ocean.png"));
     terrains.add(loadImage("terrains/desert.png"));
@@ -29,15 +29,16 @@ public class Simulation {
   }
 
   void update() {
-    if (battle){
+    if (battle) {
       b.display();
-      if (keyPressed) b.keyPressed();
-      if (b.getExit()){
-        battle = false;
+      if (!b.getPause()) {
+        if (b.getExit()) {
+          battle = false;
+        }
+        if (keyPressed) b.keyPressed();
+        if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
       }
-      if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
-    }
-    else {
+    } else {
       if (keyPressed) keyPressed();
       if (moving) move();
       for (int i = 0; i < 64; i ++) {
@@ -121,8 +122,7 @@ public class Simulation {
     if (!battle) {
       if (terrain == 0) a.display(true);
       else a.display(false);
-    }
-    else {
+    } else {
       a.displayBack();
     }
   }
