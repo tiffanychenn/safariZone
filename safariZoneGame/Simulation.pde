@@ -74,7 +74,7 @@ public class Simulation {
             } else {
               transition1 = false;
             }
-          } else if (transitionType == 3) { //double circle wipe
+          } else if (transitionType == 3) { //double circle wipe, legendaries only
             c.display();
             c1.display();
             if (c.getE() < PI || c1.getE() < 2*PI) {
@@ -158,7 +158,7 @@ public class Simulation {
         legend = false;
         System.out.println("battle!");
         //randomly chooses screenwipe type
-        int t = (int)(Math.random() * 4);
+        int t = (int)(Math.random() * 3);
         transitionType = t;
         int number = (int)(Math.random() * 100);
         if (number < 11) b = new Battle(pokes[terrain][0], terrain);
@@ -173,6 +173,7 @@ public class Simulation {
         else {
           b = new Battle(pokes[terrain][9], terrain);
           legend = true;
+          transitionType = 3;
         }
       }
     }
@@ -189,6 +190,7 @@ public class Simulation {
       b = new Battle(pokes[terrain][9], terrain);
       battle = true;
       legend = true;
+      transitionType = 3;
     } else if (key == 'p' || key == 'P') {
       pokedex = true;
     }
