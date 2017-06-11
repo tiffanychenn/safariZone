@@ -3,11 +3,20 @@ public class Simulation {
   //remember to change move() if size becomes bigger!
 
   Avatar a;
-  int terrain, seconds, direction;
+  int terrain, seconds, direction, tNum;
   ArrayList<PImage> terrains;
-  boolean moving, start, battle;
+  boolean moving, start, battle, transition1, transition2;
   Battle b;
   String[][] pokes;
+  //used for screenwipe transition
+  int transitionType;
+  MyShape l = new MyShape(0, 0, -512, 384, 0); //left wipe
+  MyShape c = new MyShape(256, 192, 640, 640, 0, 0, 1); //circle wipe 1
+  MyShape c1 = new MyShape(256, 192, 640, 640, PI, PI, 1); //circle wipe 2, double circle wipe with c
+  //used for battle opening transition
+  boolean once = true;
+  MyShape top = new MyShape(0, 192, 512, -192, 0);
+  MyShape bot = new MyShape(0, 192, 512, 192, 0);
 
   public Simulation() {
     a = new Avatar("Dawn", false);
@@ -26,17 +35,98 @@ public class Simulation {
     battle = false;
     Pokemon p = new Pokemon("Lapras");
     pokes = p.getPokes();
+    transition1 = true;
+    transition2 = true;
+    tNum = 0;
   }
 
   void update() {
     if (battle) {
-      b.display();
-      if (!b.getPause()) {
-        if (b.getExit()) {
-          battle = false;
+      //System.out.println(transition1);
+      //System.out.println(transition2);
+      if (transition1) { //screenwipe transition
+        if (terrain == 0) a.display(true);
+        else a.display(false);
+        System.out.println(transitionType);
+        if (transitionType == 0) { //left wipe
+          l.display();
+          if (l.getX() < 520) {
+            l.incrementX(4);
+            //System.out.println(l.getX());
+          } else {
+            transition1 = false;
+          }
+        } else if (transitionType == 1) { //circle wipe 1
+          c.display();
+          if (c.getE() < 2*PI) {
+            c.incrementE((2*PI)/128);
+            //System.out.println(c.getE());
+          } else {
+            transition1 = false;
+          }
+        } else if (transitionType == 2) { //circle wipe 2
+          c1.display();
+          if (c1.getE() < 3*PI) {
+            c1.incrementE((2*PI)/128);
+            //System.out.println(c.getE());
+          } else {
+            transition1 = false;
+          }
+        } else if (transitionType == 3) { //double circle wipe
+          c.display();
+          c1.display();
+          if (c.getE() < PI || c1.getE() < 2*PI) {
+            c.incrementE((2*PI)/128);
+            c1.incrementE((2*PI)/128);
+            //System.out.println(c.getE());
+            //System.out.println(c1.getE());
+          } else {
+            transition1 = false;
+          }
         }
-        if (keyPressed) b.keyPressed();
-        if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
+      } else if (transition2) { //battle opening transition
+        if (once) { //delays a bit at the start
+          delay(750);
+          once = false;
+        }
+        if (!l.getReset()) {
+          l.reset();
+          l.display();
+        }
+        if (!c.getReset()) {
+          c.reset();
+          c.display();
+        }
+        if (!c1.getReset()) {
+          c1.reset();
+          c1.display();
+        }
+        b.display();
+        a.displayBack();
+        top.display();
+        bot.display();
+        if (top.getY() > -1 || bot.getY() < 384) {
+          top.incrementY(-3);
+          bot.incrementY(3);
+          //System.out.println(top.getY());
+          //System.out.println(bot.getY());
+        } else {
+          transition2 = false;
+        }
+      } else {
+        b.display();
+        if (!b.getPause()) {
+          if (b.getExit()) {
+            battle = false;
+            //resets animation statuses
+            transition1 = true;
+            transition2 = true;
+            top.reset();
+            bot.reset();
+          }
+          if (keyPressed) b.keyPressed();
+          if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
+        }
       }
     } else {
       if (keyPressed) keyPressed();
@@ -63,6 +153,9 @@ public class Simulation {
       if ((int)(Math.random() * 10) < 1) {
         battle = true;
         System.out.println("battle!");
+        //randomly chooses screenwipe type
+        int t = (int)(Math.random() * 4);
+        transitionType = t;
         int number = (int)(Math.random() * 100);
         if (number < 11) b = new Battle(pokes[terrain][0], terrain);
         else if (number < 22) b = new Battle(pokes[terrain][1], terrain);
@@ -122,7 +215,7 @@ public class Simulation {
     if (!battle) {
       if (terrain == 0) a.display(true);
       else a.display(false);
-    } else {
+    } else if (battle && !transition2) {
       a.displayBack();
     }
   }

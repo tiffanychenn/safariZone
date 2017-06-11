@@ -1,11 +1,11 @@
 Simulation s;
 
-void setup(){
-  size(512,384);
+void setup() {
+  size(512, 384);
   s = new Simulation();
 }
 
-void draw(){
+void draw() {
   s.update();
   s.display();
 }
