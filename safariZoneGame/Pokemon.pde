@@ -157,6 +157,10 @@ public class Pokemon {
   public PImage getSprite(){
     return sprite;
   }
+  
+  public String getPokedex(){
+    return pokedex;
+  }
 
   public void display() {
     image(sprite, 322, 35);

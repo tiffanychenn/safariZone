@@ -16,15 +16,15 @@ void setup() {
   files.add(new SoundFile(this, "music/cave.mp3"));
   files.add(new SoundFile(this, "music/regular.mp3"));
   files.add(new SoundFile(this, "music/legend.mp3"));
-  //files.get(current).play();
+  files.get(current).play();
 }
 
 void draw() {
   s.update();
-  /*if (s.updateMusic() != current){
+  if (s.updateMusic() != current){
     files.get(current).stop();
     current = s.updateMusic();
     files.get(current).play();
-  }*/
+  }
   s.display();
 }

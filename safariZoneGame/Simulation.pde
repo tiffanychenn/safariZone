@@ -139,6 +139,13 @@ public class Simulation {
         println(a);
       }
     }
+    else {
+      if (keyPressed && millis() - seconds > 250) {
+        seconds = millis();
+        if (key == 'p' || key == 'P') pokedex = false;
+        else p.keyPressed();
+      }
+    }
   }
 
   void move() {
@@ -191,8 +198,15 @@ public class Simulation {
       battle = true;
       legend = true;
       transitionType = 3;
-    } else if (key == 'p' || key == 'P') {
+    } else if ((key == 'p' || key == 'P') && millis() - seconds > 250) {
+      seconds = millis();
       pokedex = true;
+    } else if (key == 'a' || key == 'A') {
+      for (int i = 0; i < pokes.length; i ++){
+        for (int j = 0; j < pokes[0].length; j ++){
+          a.addPoke(new Pokemon(pokes[i][j]));
+        }
+      }
     }
     if (moving == false) {
       if (keyCode == LEFT) {
