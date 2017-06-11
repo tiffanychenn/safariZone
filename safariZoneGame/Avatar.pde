@@ -81,4 +81,8 @@ public class Avatar{
     return caught.toString();
   }
 
+  public ArrayList<Pokemon> getCaught(){
+    return caught;
+  }
+
 }

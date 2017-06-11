@@ -153,6 +153,10 @@ public class Pokemon {
   public double getRunRate(){
     return runRate;
   }
+  
+  public PImage getSprite(){
+    return sprite;
+  }
 
   public void display() {
     image(sprite, 322, 35);

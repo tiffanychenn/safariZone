@@ -29,6 +29,8 @@ Roadmap of Development Stages
 - Should be done by June 9
 - Finished moving avatar on June 4
 - Finished basic battle functions on June 5
+- Finished all battle functions on June 9
+- Finished battle transitions on June 10
 6: Implementing a Pokedex that updates as more Pokemon are caught
 - Will do this if we have time
 7: Changing a person’s avatar, possibly with a settings tool.

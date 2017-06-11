@@ -5,8 +5,9 @@ public class Simulation {
   Avatar a;
   int terrain, seconds, direction, tNum;
   ArrayList<PImage> terrains;
-  boolean moving, start, battle, transition1, transition2;
+  boolean moving, start, battle, transition1, transition2, legend, pokedex;
   Battle b;
+  Pokedex p;
   String[][] pokes;
   //used for screenwipe transition
   int transitionType;
@@ -33,108 +34,110 @@ public class Simulation {
     seconds = millis();
     direction = 0;
     battle = false;
-    Pokemon p = new Pokemon("Lapras");
-    pokes = p.getPokes();
+    legend = false;
+    Pokemon poke = new Pokemon("Lapras");
+    pokes = poke.getPokes();
     transition1 = true;
     transition2 = true;
     tNum = 0;
+    pokedex = false;
+    p = new Pokedex(a);
   }
 
   void update() {
-    if (battle) {
-      //System.out.println(transition1);
-      //System.out.println(transition2);
-      if (transition1) { //screenwipe transition
-        if (terrain == 0) a.display(true);
-        else a.display(false);
-        System.out.println(transitionType);
-        if (transitionType == 0) { //left wipe
-          l.display();
-          if (l.getX() < 520) {
-            l.incrementX(4);
-            //System.out.println(l.getX());
-          } else {
-            transition1 = false;
+    if (!pokedex) {
+      if (battle) {
+        if (transition1) { //screenwipe transition
+          if (terrain == 0) a.display(true);
+          else a.display(false);
+          if (transitionType == 0) { //left wipe
+            l.display();
+            if (l.getX() < 520) {
+              l.incrementX(4);
+              //System.out.println(l.getX());
+            } else {
+              transition1 = false;
+            }
+          } else if (transitionType == 1) { //circle wipe 1
+            c.display();
+            if (c.getE() < 2*PI) {
+              c.incrementE((2*PI)/128);
+              //System.out.println(c.getE());
+            } else {
+              transition1 = false;
+            }
+          } else if (transitionType == 2) { //circle wipe 2
+            c1.display();
+            if (c1.getE() < 3*PI) {
+              c1.incrementE((2*PI)/128);
+              //System.out.println(c.getE());
+            } else {
+              transition1 = false;
+            }
+          } else if (transitionType == 3) { //double circle wipe
+            c.display();
+            c1.display();
+            if (c.getE() < PI || c1.getE() < 2*PI) {
+              c.incrementE((2*PI)/128);
+              c1.incrementE((2*PI)/128);
+              //System.out.println(c.getE());
+              //System.out.println(c1.getE());
+            } else {
+              transition1 = false;
+            }
           }
-        } else if (transitionType == 1) { //circle wipe 1
-          c.display();
-          if (c.getE() < 2*PI) {
-            c.incrementE((2*PI)/128);
-            //System.out.println(c.getE());
-          } else {
-            transition1 = false;
+        } else if (transition2) { //battle opening transition
+          if (once) { //delays a bit at the start
+            delay(750);
+            once = false;
           }
-        } else if (transitionType == 2) { //circle wipe 2
-          c1.display();
-          if (c1.getE() < 3*PI) {
-            c1.incrementE((2*PI)/128);
-            //System.out.println(c.getE());
-          } else {
-            transition1 = false;
+          if (!l.getReset()) {
+            l.reset();
+            l.display();
           }
-        } else if (transitionType == 3) { //double circle wipe
-          c.display();
-          c1.display();
-          if (c.getE() < PI || c1.getE() < 2*PI) {
-            c.incrementE((2*PI)/128);
-            c1.incrementE((2*PI)/128);
-            //System.out.println(c.getE());
-            //System.out.println(c1.getE());
-          } else {
-            transition1 = false;
+          if (!c.getReset()) {
+            c.reset();
+            c.display();
           }
-        }
-      } else if (transition2) { //battle opening transition
-        if (once) { //delays a bit at the start
-          delay(750);
-          once = false;
-        }
-        if (!l.getReset()) {
-          l.reset();
-          l.display();
-        }
-        if (!c.getReset()) {
-          c.reset();
-          c.display();
-        }
-        if (!c1.getReset()) {
-          c1.reset();
-          c1.display();
-        }
-        b.display();
-        a.displayBack();
-        top.display();
-        bot.display();
-        if (top.getY() > -1 || bot.getY() < 384) {
-          top.incrementY(-3);
-          bot.incrementY(3);
-          //System.out.println(top.getY());
-          //System.out.println(bot.getY());
+          if (!c1.getReset()) {
+            c1.reset();
+            c1.display();
+          }
+          b.display();
+          a.displayBack();
+          top.display();
+          bot.display();
+          if (top.getY() > -1 || bot.getY() < 384) {
+            top.incrementY(-3);
+            bot.incrementY(3);
+            //System.out.println(top.getY());
+            //System.out.println(bot.getY());
+          } else {
+            transition2 = false;
+          }
         } else {
-          transition2 = false;
+          b.display();
+          if (!b.getPause()) {
+            if (b.getExit()) {
+              battle = false;
+              //resets animation statuses
+              transition1 = true;
+              transition2 = true;
+              top.reset();
+              bot.reset();
+            }
+            if (keyPressed) b.keyPressed();
+            if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
+          }
         }
       } else {
-        b.display();
-        if (!b.getPause()) {
-          if (b.getExit()) {
-            battle = false;
-            //resets animation statuses
-            transition1 = true;
-            transition2 = true;
-            top.reset();
-            bot.reset();
-          }
-          if (keyPressed) b.keyPressed();
-          if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
+        if (keyPressed) keyPressed();
+        if (moving) move();
+        for (int i = 0; i < 64; i ++) {
+          image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
         }
+        println(a);
       }
-    } else {
-      if (keyPressed) keyPressed();
-      if (moving) move();
-      for (int i = 0; i < 64; i ++) {
-        image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
-      }
-      println(a);
     }
   }
 
@@ -152,6 +155,7 @@ public class Simulation {
       moving = false;
       if ((int)(Math.random() * 10) < 1) {
         battle = true;
+        legend = false;
         System.out.println("battle!");
         //randomly chooses screenwipe type
         int t = (int)(Math.random() * 4);
@@ -166,7 +170,10 @@ public class Simulation {
         else if (number < 77) b = new Battle(pokes[terrain][6], terrain);
         else if (number < 88) b = new Battle(pokes[terrain][7], terrain);
         else if (number < 99) b = new Battle(pokes[terrain][8], terrain);
-        else b = new Battle(pokes[terrain][9], terrain);
+        else {
+          b = new Battle(pokes[terrain][9], terrain);
+          legend = true;
+        }
       }
     }
   }
@@ -178,6 +185,13 @@ public class Simulation {
     else if (key == '4') terrain = 3;
     else if (key == '5') terrain = 4;
     else if (key == '6') terrain = 5;
+    else if (key == 'l' || key == 'L') {
+      b = new Battle(pokes[terrain][9], terrain);
+      battle = true;
+      legend = true;
+    } else if (key == 'p' || key == 'P') {
+      pokedex = true;
+    }
     if (moving == false) {
       if (keyCode == LEFT) {
         if (a.getX() >= 64) {
@@ -218,5 +232,15 @@ public class Simulation {
     } else if (battle && !transition2) {
       a.displayBack();
     }
+    if (pokedex){
+      p.display();
+    }
+  }
+
+  int updateMusic() {
+    if (battle) {
+      if (legend) return 7;
+      else return 6;
+    } else return terrain;
   }
 }
