@@ -1,4 +1,5 @@
 class MyShape {
+  
   private float startx, starty, startl, startw, starts, starte;
   private float x, y, l, w, s, e;
   private int t;
@@ -103,4 +104,5 @@ class MyShape {
     s = starts;
     e = starte;
   }
+
 }

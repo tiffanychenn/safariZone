@@ -20,9 +20,11 @@ public class Simulation {
   MyShape bot = new MyShape(0, 192, 512, 192, 0);
   PImage instructions;
   boolean instruct;
+  Select s;
+  boolean select, hasSelected;
 
   public Simulation() {
-    a = new Avatar("Dawn", false);
+    //a = new Avatar("Dawn", false);
     terrains = new ArrayList<PImage>();
     terrains.add(loadImage("terrains/ocean.png"));
     terrains.add(loadImage("terrains/desert.png"));
@@ -46,107 +48,124 @@ public class Simulation {
     p = new Pokedex(a);
     instructions = loadImage("text/gameInstructions.png");
     instruct = true;
+    s = new Select();
+    select = false;
+    hasSelected = false;
   }
 
   void update() {
-    if (!pokedex) {
-      if (battle) {
-        if (transition1) { //screenwipe transition
-          if (terrain == 0) a.display(true);
-          else a.display(false);
-          if (transitionType == 0) { //left wipe
-            l.display();
-            if (l.getX() < 520) {
-              l.incrementX(4);
-              //System.out.println(l.getX());
-            } else {
-              transition1 = false;
+    if (select) {
+      s.display();
+      if (s.getExit()) {
+        if (s.getChoice()) {
+          a = new Avatar("Brendan", true);
+        } else {
+          a = new Avatar("Dawn", false);
+        }
+        select = false;
+        hasSelected = true;
+      }
+      if (keyPressed) s.keyPressed();
+    } else {
+      if (!pokedex) {
+        if (battle) {
+          if (transition1) { //screenwipe transition
+            if (terrain == 0) a.display(true);
+            else a.display(false);
+            if (transitionType == 0) { //left wipe
+              l.display();
+              if (l.getX() < 520) {
+                l.incrementX(4);
+                //System.out.println(l.getX());
+              } else {
+                transition1 = false;
+              }
+            } else if (transitionType == 1) { //circle wipe 1
+              c.display();
+              if (c.getE() < 2*PI) {
+                c.incrementE((2*PI)/128);
+                //System.out.println(c.getE());
+              } else {
+                transition1 = false;
+              }
+            } else if (transitionType == 2) { //circle wipe 2
+              c1.display();
+              if (c1.getE() < 3*PI) {
+                c1.incrementE((2*PI)/128);
+                //System.out.println(c.getE());
+              } else {
+                transition1 = false;
+              }
+            } else if (transitionType == 3) { //double circle wipe, legendaries only
+              c.display();
+              c1.display();
+              if (c.getE() < PI || c1.getE() < 2*PI) {
+                c.incrementE((2*PI)/128);
+                c1.incrementE((2*PI)/128);
+                //System.out.println(c.getE());
+                //System.out.println(c1.getE());
+              } else {
+                transition1 = false;
+              }
             }
-          } else if (transitionType == 1) { //circle wipe 1
-            c.display();
-            if (c.getE() < 2*PI) {
-              c.incrementE((2*PI)/128);
-              //System.out.println(c.getE());
-            } else {
-              transition1 = false;
+          } else if (transition2) { //battle opening transition
+            if (once) { //delays a bit at the start
+              delay(750);
+              once = false;
             }
-          } else if (transitionType == 2) { //circle wipe 2
-            c1.display();
-            if (c1.getE() < 3*PI) {
-              c1.incrementE((2*PI)/128);
-              //System.out.println(c.getE());
-            } else {
-              transition1 = false;
+            if (!l.getReset()) {
+              l.reset();
+              l.display();
             }
-          } else if (transitionType == 3) { //double circle wipe, legendaries only
-            c.display();
-            c1.display();
-            if (c.getE() < PI || c1.getE() < 2*PI) {
-              c.incrementE((2*PI)/128);
-              c1.incrementE((2*PI)/128);
-              //System.out.println(c.getE());
-              //System.out.println(c1.getE());
-            } else {
-              transition1 = false;
+            if (!c.getReset()) {
+              c.reset();
+              c.display();
             }
-          }
-        } else if (transition2) { //battle opening transition
-          if (once) { //delays a bit at the start
-            delay(750);
-            once = false;
-          }
-          if (!l.getReset()) {
-            l.reset();
-            l.display();
-          }
-          if (!c.getReset()) {
-            c.reset();
-            c.display();
-          }
-          if (!c1.getReset()) {
-            c1.reset();
-            c1.display();
-          }
-          b.display();
-          a.displayBack();
-          top.display();
-          bot.display();
-          if (top.getY() > -1 || bot.getY() < 384) {
-            top.incrementY(-3);
-            bot.incrementY(3);
-            //System.out.println(top.getY());
-            //System.out.println(bot.getY());
+            if (!c1.getReset()) {
+              c1.reset();
+              c1.display();
+            }
+            b.display();
+            a.displayBack();
+            top.display();
+            bot.display();
+            if (top.getY() > -1 || bot.getY() < 384) {
+              top.incrementY(-3);
+              bot.incrementY(3);
+              //System.out.println(top.getY());
+              //System.out.println(bot.getY());
+            } else {
+              transition2 = false;
+            }
           } else {
-            transition2 = false;
+            b.display();
+            if (!b.getPause()) {
+              if (b.getExit()) {
+                battle = false;
+                //resets animation statuses
+                transition1 = true;
+                transition2 = true;
+                top.reset();
+                bot.reset();
+              }
+              if (keyPressed) b.keyPressed();
+              if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
+            }
           }
         } else {
-          b.display();
-          if (!b.getPause()) {
-            if (b.getExit()) {
-              battle = false;
-              //resets animation statuses
-              transition1 = true;
-              transition2 = true;
-              top.reset();
-              bot.reset();
-            }
-            if (keyPressed) b.keyPressed();
-            if (b.getPoke().getCaught()) a.addPoke(b.getPoke());
+          if (keyPressed) keyPressed();
+          if (moving) move();
+          for (int i = 0; i < 64; i ++) {
+            image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
           }
+          println(a);
         }
       } else {
-        if (keyPressed) keyPressed();
-        if (moving) move();
-        for (int i = 0; i < 64; i ++) {
-          image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
+        if (keyPressed && millis() - seconds > 250) {
+          seconds = millis();
+          if (key == 'p' || key == 'P') pokedex = false;
+          else p.keyPressed();
         }
-        println(a);
-      }
-    } else {
-      if (keyPressed && millis() - seconds > 250) {
-        seconds = millis();
-        if (key == 'p' || key == 'P') pokedex = false;
-        else p.keyPressed();
       }
     }
   }
@@ -236,9 +255,13 @@ public class Simulation {
         }
       }
     }
-    if (key == 13 || key == 10) {
-      instruct = false;
-      //instruct = !instruct;
+    if (key == 13 || key == 10 && millis() - seconds > 250) {
+      seconds = millis();
+      //instruct = false;
+      instruct = !instruct;
+      if (!hasSelected) {
+        select = true;
+      }
     }
   }
 
@@ -246,13 +269,13 @@ public class Simulation {
     if (instruct) {
       image(instructions, 0, 0);
     }
-    if (!battle && !instruct) {
+    if (!battle && !instruct && hasSelected) {
       if (terrain == 0) a.display(true);
       else a.display(false);
-    } else if (battle && !transition2) {
+    } else if (battle && !transition2 && hasSelected) {
       a.displayBack();
     }
-    if (pokedex) {
+    if (pokedex && !instruct && hasSelected) {
       p.display();
     }
   }
