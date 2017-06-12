@@ -76,10 +76,6 @@ public class Avatar {
     if (!there) caught.add(p);
   }
 
-  public String toString() {
-    return caught.toString();
-  }
-
   public ArrayList<Pokemon> getCaught() {
     return caught;
   }

@@ -1,3 +1,5 @@
+// import the sound library before running code
+
 import processing.sound.*;
 
 Simulation s;

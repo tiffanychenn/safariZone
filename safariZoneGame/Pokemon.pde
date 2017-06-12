@@ -55,20 +55,6 @@ public class Pokemon {
     }
   }
 
-  public String toString() {
-    String s = "";
-    /*
-    for(int r = 0; r < data.length; r++){
-     for(int c = 0; c < data[0].length; c++){
-     s = s +  "[" + data[r][c] + "] ";
-     }
-     s += '\n';
-     }
-     */
-    s = s + "Name: " + name;// + "\n" + "Default Catch Rate: " + catchDefault + "\n" + "Catch Stage: " + catchStage + "\n" + "Speed: " + speed + "\n" + "Run Stage: " + runStage + "\n" + "Catch Rate: " + catchRate + "\n" + "Escape Rate: " + runRate + "\n" + "Pokedex Entry: " + pokedex + "\n";
-    return s;
-  }
-
   public void changeRates(String input) { //Modifies catch rate and run rate based on whether player throws bait or mud
     //stages cannot go below -6 and or above 6
     if (input.equals("bait") || input.equals("Bait")) {

@@ -159,7 +159,6 @@ public class Simulation {
           for (int i = 0; i < 64; i ++) {
             image(terrains.get(terrain), 64 * (i / 8), 64 * (i % 8));
           }
-          println(a);
         }
       } else {
         if (keyPressed && millis() - seconds > 250) {
@@ -186,7 +185,6 @@ public class Simulation {
       if ((int)(Math.random() * 10) < 1) {
         battle = true;
         legend = false;
-        System.out.println("battle!");
         //randomly chooses screenwipe type
         int t = (int)(Math.random() * 3);
         transitionType = t;
