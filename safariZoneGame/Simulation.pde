@@ -204,12 +204,6 @@ public class Simulation {
     } else if ((key == 'p' || key == 'P') && millis() - seconds > 250) {
       seconds = millis();
       pokedex = true;
-    } else if (key == 'a' || key == 'A') {
-      for (int i = 0; i < pokes.length; i ++) {
-        for (int j = 0; j < pokes[0].length; j ++) {
-          a.addPoke(new Pokemon(pokes[i][j]));
-        }
-      }
     }
     if (moving == false) {
       if (keyCode == LEFT) {
@@ -264,6 +258,7 @@ public class Simulation {
   }
 
   int updateMusic() {
+    if (instruct) return 8;
     if (battle) {
       if (legend) return 7;
       else return 6;

@@ -2,7 +2,7 @@ import processing.sound.*;
 
 Simulation s;
 ArrayList<SoundFile> files;
-int current = 0;
+int current = 8;
 
 void setup() {
   size(512, 384);
@@ -16,6 +16,7 @@ void setup() {
   files.add(new SoundFile(this, "music/cave.mp3"));
   files.add(new SoundFile(this, "music/regular.mp3"));
   files.add(new SoundFile(this, "music/legend.mp3"));
+  files.add(new SoundFile(this, "music/opening.mp3"));
   files.get(current).play();
 }
 

@@ -14,10 +14,12 @@ public class Pokedex {
     prev = createShape(TRIANGLE, 20, 162, 60, 177, 60, 147);
     next = createShape(TRIANGLE, 492, 162, 452, 177, 452, 147);
   }
-  
-  void keyPressed(){
-    if (keyCode == RIGHT) current = (current + 1) % a.getCaught().size();
-    else if (keyCode == LEFT) current = ((current - 1) + a.getCaught().size()) % a.getCaught().size();
+
+  void keyPressed() {
+    if (a.getCaught().size() > 0) {
+      if (keyCode == RIGHT) current = (current + 1) % a.getCaught().size();
+      else if (keyCode == LEFT) current = ((current - 1) + a.getCaught().size()) % a.getCaught().size();
+    }
   }
 
   void display() {
