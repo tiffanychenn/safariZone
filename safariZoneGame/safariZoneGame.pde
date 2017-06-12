@@ -22,7 +22,7 @@ void setup() {
 
 void draw() {
   s.update();
-  if (s.updateMusic() != current){
+  if (s.updateMusic() != current) {
     files.get(current).stop();
     current = s.updateMusic();
     files.get(current).play();

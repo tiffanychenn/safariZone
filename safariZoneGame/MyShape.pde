@@ -1,5 +1,5 @@
 class MyShape {
-  
+
   private float startx, starty, startl, startw, starts, starte;
   private float x, y, l, w, s, e;
   private int t;
@@ -57,7 +57,7 @@ class MyShape {
   public float getY() {
     return y;
   }
-  
+
   public float getE() {
     return e;
   }
@@ -75,7 +75,7 @@ class MyShape {
     y += k;
     isReset = false;
   }
-  
+
   public void incrementE(float k) {
     e += k;
     isReset = false;
@@ -90,7 +90,7 @@ class MyShape {
     y = k;
     isReset = false;
   }
-  
+
   public void setE(float k) {
     e = k;
     isReset = false;
@@ -104,5 +104,4 @@ class MyShape {
     s = starts;
     e = starte;
   }
-
 }

@@ -133,32 +133,32 @@ public class Pokemon {
     yes[5] = splitter(20);
     return yes;
   }
-  
-  private String[] splitter(int number){
+
+  private String[] splitter(int number) {
     String[] temp = new String[10];
-    for (int i = 0; i < 10; i ++){
+    for (int i = 0; i < 10; i ++) {
       temp[i] = data[i + number][0];
     }
     return temp;
   }
-  
-  public boolean getCaught(){ 
+
+  public boolean getCaught() { 
     return caught;
   }
 
-  public String getName(){
+  public String getName() {
     return name;
   }
 
-  public double getRunRate(){
+  public double getRunRate() {
     return runRate;
   }
-  
-  public PImage getSprite(){
+
+  public PImage getSprite() {
     return sprite;
   }
-  
-  public String getPokedex(){
+
+  public String getPokedex() {
     return pokedex;
   }
 

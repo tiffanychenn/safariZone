@@ -65,7 +65,7 @@ public class Simulation {
         select = false;
         hasSelected = true;
       }
-      if (keyPressed) s.keyPressed();
+      if (keyPressed && millis() - seconds > 250) s.keyPressed();
     } else {
       if (!pokedex) {
         if (battle) {
@@ -224,7 +224,7 @@ public class Simulation {
       seconds = millis();
       pokedex = true;
     }
-    if (moving == false) {
+    if (moving == false && !instruct) {
       if (keyCode == LEFT) {
         if (a.getX() >= 64) {
           moving = true;

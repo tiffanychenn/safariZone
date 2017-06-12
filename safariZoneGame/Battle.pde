@@ -56,27 +56,25 @@ public class Battle {
     image(background, 0, 0);
     image(text.get(currentText), 0, 256);
     p.display();
-    if (pause && millis() - seconds > 1000){
+    if (pause && millis() - seconds > 1000) {
       seconds = millis();
       pause = false;
-      if (currentText == 4 || currentText == 5 || currentText == 10){
+      if (currentText == 4 || currentText == 5 || currentText == 10) {
         pokemonRun();
         pause = true;
-      }
-      else if (currentText == 6){
+      } else if (currentText == 6) {
         pause = true;
         catchPokemon();
-      }
-      else {
+      } else {
         currentText = 0;
         input = 0;
       }
     }
   }
 
-  public void keyPressed() { //WASD, enter
+  public void keyPressed() { //arrow keys, enter
     if (keyCode == LEFT) {
-      if (input == 1 || input == 3){
+      if (input == 1 || input == 3) {
         input -= 1;
         currentText -= 1;
       }
@@ -95,7 +93,7 @@ public class Battle {
         input -= 2;
         currentText -= 2;
       }
-    } else if (key == 13 || key == 10) {
+    } else if (key == 13 || key == 10  && millis() - seconds > 250) {
       seconds = millis();
       if (input == 0) bait();
       if (input == 1) mud();
@@ -109,12 +107,11 @@ public class Battle {
     currentText = 6;
   }
 
-  public void catchPokemon(){
-    if (p.catchPokemon()){
+  public void catchPokemon() {
+    if (p.catchPokemon()) {
       currentText = 9;
       exit = true;
-    }
-    else{
+    } else {
       currentText = 10;
     }
   }
@@ -133,28 +130,26 @@ public class Battle {
     currentText = 7;
     exit = true;
   }
-  
-  public void pokemonRun(){
+
+  public void pokemonRun() {
     int n = (int)(Math.random() * 255);
-    if(n < p.getRunRate()){
+    if (n < p.getRunRate()) {
       exit = true;
       currentText = 8;
-    }
-    else {
+    } else {
       currentText = 11;
     }
   }
-  
-  public boolean getExit(){
+
+  public boolean getExit() {
     return exit;
   }
-  
-  public Pokemon getPoke(){
+
+  public Pokemon getPoke() {
     return p;
   }
-  
-  public boolean getPause(){
+
+  public boolean getPause() {
     return pause;
   }
-  
 }

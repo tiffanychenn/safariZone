@@ -20,7 +20,7 @@ public class Select {
     if (choice) {
       image(arrow, 125, 40);
     } else {
-    image(arrow, 345, 40);
+      image(arrow, 345, 40);
     }
   }
 
