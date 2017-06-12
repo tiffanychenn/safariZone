@@ -145,6 +145,7 @@ public class Simulation {
                 //resets animation statuses
                 transition1 = true;
                 transition2 = true;
+                once = true;
                 top.reset();
                 bot.reset();
               }
