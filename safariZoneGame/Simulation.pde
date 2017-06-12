@@ -45,7 +45,6 @@ public class Simulation {
     transition2 = true;
     tNum = 0;
     pokedex = false;
-    p = new Pokedex(a);
     instructions = loadImage("text/gameInstructions.png");
     instruct = true;
     s = new Select();
@@ -64,6 +63,7 @@ public class Simulation {
         }
         select = false;
         hasSelected = true;
+        p = new Pokedex(a);
       }
       if (keyPressed && millis() - seconds > 250) s.keyPressed();
     } else {
@@ -282,7 +282,7 @@ public class Simulation {
   }
 
   int updateMusic() {
-    if (instruct) return 8;
+    if (instruct || !hasSelected) return 8;
     if (battle) {
       if (legend) return 7;
       else return 6;
