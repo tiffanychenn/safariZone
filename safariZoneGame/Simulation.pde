@@ -18,6 +18,8 @@ public class Simulation {
   boolean once = true;
   MyShape top = new MyShape(0, 192, 512, -192, 0);
   MyShape bot = new MyShape(0, 192, 512, 192, 0);
+  PImage instructions;
+  boolean instruct;
 
   public Simulation() {
     a = new Avatar("Dawn", false);
@@ -42,6 +44,8 @@ public class Simulation {
     tNum = 0;
     pokedex = false;
     p = new Pokedex(a);
+    instructions = loadImage("text/gameInstructions.png");
+    instruct = true;
   }
 
   void update() {
@@ -138,8 +142,7 @@ public class Simulation {
         }
         println(a);
       }
-    }
-    else {
+    } else {
       if (keyPressed && millis() - seconds > 250) {
         seconds = millis();
         if (key == 'p' || key == 'P') pokedex = false;
@@ -202,8 +205,8 @@ public class Simulation {
       seconds = millis();
       pokedex = true;
     } else if (key == 'a' || key == 'A') {
-      for (int i = 0; i < pokes.length; i ++){
-        for (int j = 0; j < pokes[0].length; j ++){
+      for (int i = 0; i < pokes.length; i ++) {
+        for (int j = 0; j < pokes[0].length; j ++) {
           a.addPoke(new Pokemon(pokes[i][j]));
         }
       }
@@ -239,16 +242,23 @@ public class Simulation {
         }
       }
     }
+    if (key == 13 || key == 10) {
+      instruct = false;
+      //instruct = !instruct;
+    }
   }
 
   void display() {
-    if (!battle) {
+    if (instruct) {
+      image(instructions, 0, 0);
+    }
+    if (!battle && !instruct) {
       if (terrain == 0) a.display(true);
       else a.display(false);
     } else if (battle && !transition2) {
       a.displayBack();
     }
-    if (pokedex){
+    if (pokedex) {
       p.display();
     }
   }
