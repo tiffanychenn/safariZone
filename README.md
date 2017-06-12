@@ -10,6 +10,15 @@ List of Features:
 5. Ability to change avatar //not completed yet
 6. Music playing that changes based on terrain and type of battle (legends vs non-legends) //for this, the Sound library must be imported into Processing
  
+To Be Implemented:
+
+1. Input processing so that movement looks more fluid
+2. Allowing the user to save data
+3. Battle animations inside battle (like having the avatar literally throw mud/bait/ball)
+
+Bugs That Are Known:
+1. Once the game is closed, an error prints out in the terminal about a node. However, the code seems to be working while it is running.
+
 Roadmap of Development Stages:
 
 1. Creating a Pokemon database to extract all information from (like name, catch rate, Pokedex entry, etc.)
