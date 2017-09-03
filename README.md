@@ -1,5 +1,5 @@
-# final-project
-Our final project for APCS2
+# safari-zone
+a pokemon safari zone!
 
 List of Features:
 
